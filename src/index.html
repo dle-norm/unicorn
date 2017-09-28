@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Unicorn</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    </head>
+    <body ng-app="unicornApp"﻿ ng-controller="unicornCtrl">
+        <div class="col-md-offset-5 col-md-4">
+            nom : <input type="text" ng-model="name"/>
+            couleur : <input type="text" ng-model="color"/>
+            gender : <input type="text" ng-model="gender"/>
+            age : <input type="text" ng-model="age"/>
+            <button ng-click="uni.addUnicorn(name, color, gender, age)">Ajoutez une licorne</button>
+            <div ng-repeat="lic in uni.list">
+                <p> nom : {{lic.name}} </p>
+                <button ng-click="uni.showInfo($index)">Montrer information</button>
+                <div ng-show="lic.show">
+                    <p> couleur : {{lic.color}}</p>
+                    <p> gendre : {{lic.color}}</p>
+                    <p> age : {{lic.color}}</p>
+                </div>
+            </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+            <script src="app/unicornApp.js"></script>
+            <script src="controller/unicornCtrl.js"></script>
+            <script src="service/unicornFactory.js"></script>
+            <script src="https://use.fontawesome.com/1f937565ea.js"></script>
+        </div>
+    </body>
+</html>
