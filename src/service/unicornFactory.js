@@ -6,15 +6,23 @@ app.factory('unicornFactory', function ($http) {
                 color: "",
                 gender: "",
                 age: "",
-                show: false
+                show: false,
+                mate: false
             },
         addUnicorn : function(name, color, gender, age) {
+            if ((gender != "male" && gender != "female") || Number(age) < 18) {
+                gender = "other";
+            }
+            if (!this.isHexaColor(color)) {
+                color = "FFFFFF";
+            }
             this.tmp = {
                 name : name,
                 color: color,
                 gender: gender,
                 age: age,
-                show: false
+                show: false,
+                mate: false
             };
             this.list.push(this.tmp);
             this.setUnicorn();
@@ -35,7 +43,8 @@ app.factory('unicornFactory', function ($http) {
                         color: array[i+2],
                         gender: array[i+3],
                         age: array[i+4],
-                        show: false
+                        show: false,
+                        mate: false
                     };
                     this.list.push(this.tmp);
                     i += 5;
@@ -62,6 +71,18 @@ app.factory('unicornFactory', function ($http) {
         },
         showInfo : function(index) {
            this.list[index].show = !this.list[index].show;
+        },
+        showMate : function(index) {
+           this.list[index].mate = !this.list[index].mate;
+        },
+        mate : function(parentIndex, index) {
+           if ((this.list[parentIndex].gender == "male" && this.list[index].gender == "female") || (this.list[index].gender == "male" && this.list[parentIndex].gender == "female")) {
+                this.addUnicorn((this.list[parentIndex].name + this.list[index].name).toString() ,((Number(parseInt(this.list[parentIndex].color, 16)) + Number(parseInt(this.list[index].color, 16))) / 2).toString(16), "other", "0");
+           }
+        },
+        isHexaColor : function (sNum){
+          return (typeof sNum === "string") && sNum.length === 6 
+                 && ! isNaN( parseInt(sNum, 16) );
         }
     };
     return uni;

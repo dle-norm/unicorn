@@ -16,8 +16,14 @@
                 <button ng-click="uni.showInfo($index)">Montrer information</button>
                 <div ng-show="lic.show">
                     <p> couleur : {{lic.color}}</p>
-                    <p> gendre : {{lic.color}}</p>
-                    <p> age : {{lic.color}}</p>
+                    <p> genre : {{lic.gender}}</p>
+                    <p> age : {{lic.age}}</p>
+                    <button ng-click="uni.showMate($index)">Reproduction</button>
+                    <div ng-show="lic.mate">
+                        <div ng-repeat="licToMate in uni.list">
+                        <p> nom : {{licToMate.name}} </p>
+                        <button ng-click="uni.mate($parent.$index, $index)">Reproduire avec</button>
+                    </div>
                 </div>
             </div>
             <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
