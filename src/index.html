@@ -12,8 +12,8 @@
             age : <input type="text" ng-model="age"/>
             <button ng-click="uni.addUnicorn(name, color, gender, age)">Ajoutez une licorne</button>
             <div ng-repeat="lic in uni.list">
+                <button ng-click="uni.showInfo($index)">Montrer information de : </button>
                 <p> nom : {{lic.name}} </p>
-                <button ng-click="uni.showInfo($index)">Montrer information</button>
                 <div ng-show="lic.show">
                     <p> couleur : {{lic.color}}</p>
                     <p> genre : {{lic.gender}}</p>
@@ -21,8 +21,8 @@
                     <button ng-click="uni.showMate($index)">Reproduction</button>
                     <div ng-show="lic.mate">
                         <div ng-repeat="licToMate in uni.list">
+                        <button ng-click="uni.mate($parent.$index, $index)">Reproduire avec :</button>
                         <p> nom : {{licToMate.name}} </p>
-                        <button ng-click="uni.mate($parent.$index, $index)">Reproduire avec</button>
                     </div>
                 </div>
             </div>

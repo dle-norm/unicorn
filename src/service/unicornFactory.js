@@ -67,7 +67,6 @@ app.factory('unicornFactory', function ($http) {
             j++;
             localStorage.setItem("list", localStorage.getItem("list") + s);
             localStorage.setItem("index", String(j));
-            console.log(localStorage.getItem("list"));
         },
         showInfo : function(index) {
            this.list[index].show = !this.list[index].show;
@@ -77,7 +76,7 @@ app.factory('unicornFactory', function ($http) {
         },
         mate : function(parentIndex, index) {
            if ((this.list[parentIndex].gender == "male" && this.list[index].gender == "female") || (this.list[index].gender == "male" && this.list[parentIndex].gender == "female")) {
-                this.addUnicorn((this.list[parentIndex].name + this.list[index].name).toString() ,((Number(parseInt(this.list[parentIndex].color, 16)) + Number(parseInt(this.list[index].color, 16))) / 2).toString(16), "other", "0");
+                this.addUnicorn((this.list[parentIndex].name + this.list[index].name).toString() ,parseInt(((Number(parseInt(this.list[parentIndex].color, 16)) + Number(parseInt(this.list[index].color, 16))) / 2),10).toString(16), "other", "0");
            }
         },
         isHexaColor : function (sNum){
